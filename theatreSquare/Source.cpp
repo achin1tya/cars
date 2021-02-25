@@ -74,8 +74,8 @@ void main()
 	{
 		tempCar = new car;
 		fin >> tempCar->numberOfStreets;
-
-		for (int i = 0; i < numberOfStreets; i++)
+		tempCar->timeOfCompletion = 0;
+		for (int k = 0; k < tempCar->numberOfStreets; k++)
 		{
 			std::string t;
 			fin >> t;
@@ -88,6 +88,13 @@ void main()
 				}
 			}
 		}
+
+		for (auto& j : tempCar->path)
+		{
+			tempCar->timeOfCompletion += j->timeOfCompletion;
+		}
+
+		cars.push_back(tempCar);
 	}
 
 
