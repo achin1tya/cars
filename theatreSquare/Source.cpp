@@ -43,6 +43,7 @@ bool compare(const street* a, const street* b)
 
 void main()
 {
+	fast;
 	std::fstream fin;
 	fin.open("input.txt");
 	std::fstream fout;
