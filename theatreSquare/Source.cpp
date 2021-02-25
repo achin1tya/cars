@@ -22,6 +22,7 @@ struct inter
 
 struct car
 {
+	int numberOfStreets;
 	int timeOfCompletion;
 	std::vector<street*> path;
 };
@@ -31,6 +32,8 @@ void main()
 {
 	std::fstream fin;
 	fin.open("input.txt");
+	std::fstream fout;
+	fout.open("output.txt");
 	int time;
 	int numberOfIntersections;
 	int numberOfStreets;
@@ -46,7 +49,7 @@ void main()
 
 
 
-	std::cin >> time >> numberOfIntersections >> numberOfStreets >> numberOfCars >> Score;
+	fin >> time >> numberOfIntersections >> numberOfStreets >> numberOfCars >> Score;
 
 	int id = 0;
 	for (int i = 0; i < numberOfIntersections; i++)
@@ -59,17 +62,32 @@ void main()
 	for (int i = 0; i < numberOfStreets; i++)
 	{
 		tempStreet = new street;
-		std::cin >> tempStreet->inter1;
-		std::cin >> tempStreet->inter2;
-		std::cin >> tempStreet->name;
-		std::cin >> tempStreet->timeOfCompletion;
+		fin >> tempStreet->inter1;
+		fin >> tempStreet->inter2;
+		fin >> tempStreet->name;
+		fin >> tempStreet->timeOfCompletion;
 
 		streets.push_back(tempStreet);
 	}
 
 	for (int i = 0; i < numberOfCars; i++)
 	{
-		
+		tempCar = new car;
+		fin >> tempCar->numberOfStreets;
+
+		for (int i = 0; i < numberOfStreets; i++)
+		{
+			std::string t;
+			fin >> t;
+			for (auto& j : streets)
+			{
+				if (t == j->name)
+				{
+					tempCar->path.push_back(j);
+					break;
+				}
+			}
+		}
 	}
 
 
