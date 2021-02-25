@@ -23,6 +23,7 @@
     <ProjectGuid>{C7E53E46-01F8-43BF-9641-07FFABA2C8BA}</ProjectGuid>
     <RootNamespace>theatreSquare</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Cars</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
