@@ -5,6 +5,9 @@
 #include<vector>
 #include<map>
 #include<algorithm>
+#define fast ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+
+
 
 struct street
 {
@@ -14,6 +17,7 @@ struct street
 	int timeOfCompletion;
 	int redLightTime;
 	int frequency;
+	bool hasLight = false;	
 };
 
 struct inter
@@ -21,6 +25,7 @@ struct inter
 	int id;
 	std::vector<street*> next;
 	std::vector<street*> prev;
+	bool hasLight = false;
 };
 
 struct car
@@ -30,9 +35,9 @@ struct car
 	std::vector<street*> path;
 };
 
-bool compare(const street& a, const street& b)
+bool compare(const street* a, const street* b)
 {
-	return a.frequency < b.frequency;
+	return a->frequency < b->frequency;
 }
 
 
@@ -56,7 +61,7 @@ void main()
 	car* tempCar;
 
 
-
+	
 	fin >> time >> numberOfIntersections >> numberOfStreets >> numberOfCars >> Score;
 
 	int id = 0;
@@ -120,15 +125,50 @@ void main()
 			if (j->frequency == 0)
 				j->redLightTime = 0;
 			else
+			{
 				j->redLightTime = set++;
-
+				i->hasLight = true;
+				j->hasLight = true;
+			}
+		}
+	}
+	int count = 0;
+	for (auto i : intersections)
+	{
+		if (i->hasLight)
+		{
+			count++;
 		}
 	}
 
+	fout << count << '\n';
+
+	for (auto i : intersections)
+	{
+		int c = 0;
+		if (i->hasLight)
+		{
+			fout << i->id << '\n';
+			for (auto j : i->prev)
+			{
+				if (j->hasLight)
+					c++;
+			}
+			fout << c << '\n';
+			for (auto j : i->prev)
+			{
+				if (j->hasLight)
+				{
+					fout << j->name << " " << j->redLightTime  << '\n';
+				}
 
 
-	
+			}
+		}
 
-	
 
+
+
+
+	}
 }
